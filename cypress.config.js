@@ -25,7 +25,10 @@ module.exports = defineConfig({
   e2e: {
     setupNodeEvents,
     specPattern: ["cypress/e2e/**/*.{js,jsx,ts,tsx,feature}", "cypress/e2e/**/*.cy.{js,jsx,ts,tsx,feature}"],        
-    baseUrl: "https://www.saucedemo.com",
+   // baseUrl: "https://www.saucedemo.com",
+    baseUrl: "http://localhost:3000",
+    viewportHeight: 1000,
+    viewportWidth: 1280,
     chromeWebSecurity: false,
     defaultCommandTimeout: 6000,
  
