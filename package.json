@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cypress open"
+    "test": "cypress open",
+    "start": "node index.js"
+
+
   },
   "author": "",
   "license": "ISC",
