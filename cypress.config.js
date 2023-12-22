@@ -1,4 +1,5 @@
 const { defineConfig } = require("cypress");
+
 const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
 const preprocessor = require("@badeball/cypress-cucumber-preprocessor");
 const createEsbuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esbuild");
@@ -21,14 +22,13 @@ async function setupNodeEvents(on, config) {
 }
 
 module.exports = defineConfig({
-  projectId: 'wvoy4p',
+  projectId: 'a6vf2y',
   e2e: {
     setupNodeEvents,
     specPattern: ["cypress/e2e/**/*.{js,jsx,ts,tsx,feature}", "cypress/e2e/**/*.cy.{js,jsx,ts,tsx,feature}"],        
-   // baseUrl: "https://www.saucedemo.com",
-    baseUrl: "http://localhost:3000",
-    viewportHeight: 1000,
-    viewportWidth: 1280,
+    baseUrl: "https://www.saucedemo.com",
+    //baseUrl: "http://localhost:3000",
+ 
     chromeWebSecurity: false,
     defaultCommandTimeout: 6000,
  
