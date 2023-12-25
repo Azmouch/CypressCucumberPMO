@@ -29,7 +29,7 @@ module.exports = defineConfig({
    // baseUrl: "https://www.saucedemo.com",
     //baseUrl: "http://localhost:3000",
  
-    chromeWebSecurity: true,
+    chromeWebSecurity: false,
     defaultCommandTimeout: 6000,
  
 
