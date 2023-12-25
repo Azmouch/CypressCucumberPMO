@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cypress open",
-    "start": "node index.js"
+    "test": "cypress open"
+    
   },
   "author": "",
   "license": "ISC",
@@ -17,8 +17,7 @@
     "esbuild": "^0.19.9"
   },
   "dependencies": {
-    "@badeball/cypress-cucumber-preprocessor": "^19.2.0",
-    "cypress-parallel": "^0.14.0"
+    "@badeball/cypress-cucumber-preprocessor": "^19.2.0"
   },
   "cypress-cucumber-preprocessor": {}
 }
