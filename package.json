@@ -6,7 +6,8 @@
   "scripts": {
     "test": "cypress open",
     "cy:run": "cypress run",
-    "cy:run:parallel": "cypress run --record --key 357c1db3-e1c1-4683-8d8a-240281987489 --parallel"
+    "cy:run:parallel": "cypress run --record --key 357c1db3-e1c1-4683-8d8a-240281987489 --parallel",
+    "run:browsers": "npx cypress run --browser chrome"
 
   },
   "author": "",
@@ -22,5 +23,18 @@
     "@badeball/cypress-cucumber-preprocessor": "^19.2.0",
     "cypress-parallel": "^0.14.0"
   },
+
+  "browsers": [{
+    "browser": "chrome",
+    "versions": ["latest", "latest - 1"]
+    },
+    {
+    "browser": "firefox",
+    "versions": ["latest", "latest - 1"]
+    },
+    {
+    "browser": "edge",
+    "versions": ["latest"]
+    }],
   "cypress-cucumber-preprocessor": {}
 }
