@@ -13,12 +13,7 @@
     },
     
     "stepDefinitions": [
-      "[filepath]/**/*.{js,ts}",
-      "[filepath].{js,ts}",
-      "cypress/e2e/step_definitions/*.{js,ts}",
-      "[filepath]\\***.{js,ts}",
-      "[filepath].{js,ts}",
-      "cypress\\e2e\\step_definitions\\*.{js,ts}",
+      
       "cypress/support/step_definitions/**/*.{js,mjs,ts,tsx}",
       "cypress/support/step_definitions/*.{js,ts}"
 
