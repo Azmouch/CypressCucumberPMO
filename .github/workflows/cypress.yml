@@ -1,70 +1,56 @@
-name: example-start
+name: main
 on:
   push:
     branches:
-      - 'main'
+      - 'master'
   pull_request:
-  workflow_dispatch:
-
-env:
-  # Disable update-check called by serve through start or start2 script
-  # works around issue when more than one instance of serve is started
-  # See PR https://github.com/vercel/serve/pull/457
-  NO_UPDATE_CHECK: 1
-
 jobs:
-
-  start:
-    # example with web application build,
-    # server start and waiting for the server
-    # to respond before running tests
+  build-and-test:
     runs-on: ubuntu-22.04
+    name: Build and test
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Cypress tests
-        uses: ./
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          working-directory: examples/start
-          build: npm run build
-          start: npm start
-          wait-on: 'http://localhost:3000'
+          # Action runs: using: node20 as defined in
+          # https://github.com/cypress-io/github-action/blob/master/action.yml
+          # Node.js minor version is aligned to
+          # https://github.com/actions/runner/blob/main/src/Misc/externals.sh
+          node-version: 20.8.1
+      - run: npm ci
+      - run: npm run format
+      - run: npm run build
+      - run: npm test
 
-  start-multiple:
-    # example with web application build
-    # and several services to start
+  release:
     runs-on: ubuntu-22.04
+    name: release
+    needs: [build-and-test]
+    # only release from the master branch
+    # in parent repository, not in a fork
+    if: (github.ref == 'refs/heads/master') &&
+      (github.repository == 'cypress-io/github-action')
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Cypress tests
-        uses: ./
+      - run: npm ci
+      # https://github.com/cycjimmy/semantic-release-action
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v3
+        id: semantic
         with:
-          working-directory: examples/start
-          build: npm run build
-          # single start command per line
-          start: |
-            npm start
-            npm run start2
-          wait-on: 'http://localhost:8000'
-          config: 'baseUrl=http://localhost:8000'
+          branches: master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  start-multiple-commas:
-    # example with web application build
-    # and several services to start
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Cypress tests
-        uses: ./
-        with:
-          working-directory: examples/start
-          build: npm run build
-          # use commas to separate the commands
-          start: npm start, npm run start2
-          wait-on: 'http://localhost:8000'
-          config: 'baseUrl=http://localhost:8000'
+      - name: Push updates to branch for major version
+        # if there is a new version published, let's say v1.2.3
+        # then this step will update branch "v1" to this commit
+        # https://github.com/cypress-io/github-action/branches
+        if: steps.semantic.outputs.new_release_published == 'true'
+        run: 'git push https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:refs/heads/v${{steps.semantic.outputs.new_release_major_version}}'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
