@@ -1,11 +1,11 @@
-name: Chrome
+name: Firefox
 on: push
 jobs:
-  chrome:
+  firefox:
     runs-on: ubuntu-22.04
-    name: E2E on Chrome
+    name: E2E on Firefox
     steps:
       - uses: actions/checkout@v4
       - uses: cypress-io/github-action@v6
         with:
-          browser: chrome
+          browser: firefox
