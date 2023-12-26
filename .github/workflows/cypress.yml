@@ -1,17 +1,11 @@
-name: Example echo PR number and URL
+name: Chrome
 on: push
 jobs:
-  cypress-run:
+  chrome:
     runs-on: ubuntu-22.04
+    name: E2E on Chrome
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
+      - uses: actions/checkout@v4
+      - uses: cypress-io/github-action@v6
         with:
-          record: true
-      - run: echo "PR number is $CYPRESS_PULL_REQUEST_ID"
-      - run: echo "PR URL is $CYPRESS_PULL_REQUEST_URL"
-    env:
-      CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          browser: chrome
