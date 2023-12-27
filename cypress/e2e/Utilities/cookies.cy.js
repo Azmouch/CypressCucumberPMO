@@ -34,6 +34,7 @@ context('Cookies', () => {
       expect(cookies[0]).to.have.property('secure', false)
       expect(cookies[0]).to.have.property('domain')
       expect(cookies[0]).to.have.property('path')
+      cy.wait(1000)
     })
   })
 
