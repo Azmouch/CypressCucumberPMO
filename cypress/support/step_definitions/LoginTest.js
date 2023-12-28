@@ -25,7 +25,7 @@ When("the user clicks on login button", () => {
 
   Then("the user is on the dashboard page", () => {
 
-    home.ClickMyAccount().click()
+    home.ClickMyAccount()
     log.ClickLogout().click()
 });
 
