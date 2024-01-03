@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "open": "cypress open",
-    "cy:run": "cypress run",
-    "test": "start-server-and-test start http://localhost:3030 cy:run",
+    "run": "cypress run",
     "cy:run:parallel": "cypress run --record --key 9622ad43-f945-4159-9217-306e989ce0af --parallel",
     "run:browsers": "npx cypress run --record --key 357c1db3-e1c1-4683-8d8a-240281987489 --browser electron & npx cypress run --record --key 357c1db3-e1c1-4683-8d8a-240281987489 --browser edge & npx cypress run --record --key 357c1db3-e1c1-4683-8d8a-240281987489 --browser firefox",
     "test:firefox": "npx cypress run --browser firefox"
