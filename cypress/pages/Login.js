@@ -18,10 +18,13 @@ class Login {
     {
       return cy.get('.btn_action').contains('LOGIN')
     }
+    
+
+
+
 ClickLogout()
 {
     return cy.contains('Logout')
-
 }
 
 }

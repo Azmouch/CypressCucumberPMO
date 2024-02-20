@@ -1,6 +1,4 @@
-
 describe('Example to demonstrate the handling of new browser windows in cypress', () => {
-
 
     it('Handling new Browser Tab', function () {
         cy.visit('https://the-internet.herokuapp.com/windows')
@@ -11,7 +9,6 @@ describe('Example to demonstrate the handling of new browser windows in cypress'
             .should('have.text', 'New Window')
     })
 
-    
     it('Handling new Browser Window', function () {
         cy.visit('https://alapanme.github.io/testing-cypress.html')
         cy.window().then((win) => {

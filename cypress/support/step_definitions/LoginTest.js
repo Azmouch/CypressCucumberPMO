@@ -2,8 +2,10 @@
 import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
 
 
-import HomePage from "C:/Users/azouaghi/Documents/CypressProjects/CypressCucumberPMO/cypress/pages/HomePage.js";
-import Login from "C:/Users/azouaghi/Documents/CypressProjects/CypressCucumberPMO/cypress/pages/Login.js";
+import HomePage from "C:/Users/azouaghi/OneDrive - talan.com/Documents/CypressProjects/CypressCucumberPMO/cypress/pages/HomePage.js";
+
+import Login from "C:/Users/azouaghi/OneDrive - talan.com/Documents/CypressProjects/CypressCucumberPMO/cypress/pages/Login.js";
+
 
 const home = new HomePage()
 const log = new Login()

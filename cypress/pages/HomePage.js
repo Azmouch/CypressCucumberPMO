@@ -10,7 +10,7 @@ class HomePage {
 
 ClickMyAccount()
 {
-  return cy.get('.bm-burger-button > button')
+  return cy.get('.bm-burger-button > button').click()
 }
 
 
